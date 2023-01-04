@@ -60,8 +60,8 @@
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">{{vm.name}}</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{% url 'summary' vm.name %}" class="">Summary</a></li>
-                            <li class="active"><a href="{% url 'console' vm.name %}" class="">Console</a></li>
-                            <li class=""><a href="{% url 'backup' vm.name %}" class="">Backup</a></li>
+                            <li class=""><a href="{% url 'console' vm.name %}" class="">Console</a></li>
+                            <li class="active"><a href="{% url 'backup' vm.name %}" class="">Backup</a></li>
                             <li class=""><a href="{% url 'snapshots' vm.name %}" class="">Snapshots</a></li>
                         </ul>
                     </li>
@@ -202,9 +202,8 @@
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
-                            <label><h5 style="color: blue;">Console</h5></label>
+                            <label><h5 style="color: blue;">Backup</h5></label>
                             <div class="row">
-                                <iframe id="iframeId" src="https://server.prom.cd:8006/?console=kvm&novnc=1&vmid=100&vmname=linux&node=test&resize=off&cmd="></iframe>
                             </div>
                             <!-- [ Main Content ] end -->
                         </div>

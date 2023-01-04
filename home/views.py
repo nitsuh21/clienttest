@@ -86,43 +86,62 @@ def cloudservers(request):
         return redirect('login')
 
 def console(request,name):
-    ticket = request.session['ticket']
-    vms = request.session['vms']
-    print(vms)
-    print(name)
-    for vm in vms:
-        print(vm['name'])
-        if vm['name'] == name:
-            vm = vm
-    vmid = vm['vmid']
-    name = vm['name']
-    node = request.session['node']
-    url = 'https://server.prom.cd:8006/?console=kvm&novnc=1&vmid=' + str(vmid)+ '&vmname='+ str(name)+'&node='+ node + '&resize=off&cmd='
-    ticket = request.session['ticket']
-    context={
-            'ticket':ticket
-        }
-    response = render(request,'console.html',context)
-    
-    ticket = urllib.parse.quote(ticket, safe='')
-    response.set_cookie('PVEAuthCookie',ticket,domain='.prom.cd',samesite=None,secure=True)
-    return response
+    if 'username' in request.session:
+        ticket = request.session['ticket']
+        vms = request.session['vms']
+        print(vms)
+        print(name)
+        for vm in vms:
+            print(vm['name'])
+            if vm['name'] == name:
+                vm = vm
+        vmid = vm['vmid']
+        name = vm['name']
+        node = request.session['node']
+        url = 'https://server.prom.cd:8006/?console=kvm&novnc=1&vmid=' + str(vmid)+ '&vmname='+ str(name)+'&node='+ node + '&resize=off&cmd='
+        ticket = request.session['ticket']
+        context={
+                'ticket':ticket
+            }
+        response = render(request,'console.html',context)
+        print(request.session['csrf'])
+        ticket = urllib.parse.quote(ticket, safe='')
+        response.set_cookie('PVEAuthCookie',ticket,domain='.prom.cd')
+        return response
+    else:
+        return redirect('login')
 
 def summary(request,name):
-    ticket = request.session['ticket']
-    vms = request.session['vms']
-    for vm in vms:
-        if vm['name'] == name:
-            vm = vm
-    context={
-            'ticket':ticket,
-            'vm':vm
-        }
-    response = render(request,'summary.html',context)
-    return response
+    if 'username' in request.session:
+        ticket = request.session['ticket']
+        vms = request.session['vms']
+        for vm in vms:
+            if vm['name'] == name:
+                vm = vm
+        context={
+                'ticket':ticket,
+                'vm':vm
+            }
+        response = render(request,'summary.html',context)
+        return response
+    else:
+        return redirect('login')
 
 def snapshots(request,name):
     pass
 
 def backup(request,name):
-    pass
+    if 'username' in request.session:
+        ticket = request.session['ticket']
+        vms = request.session['vms']
+        for vm in vms:
+            if vm['name'] == name:
+                vm = vm
+        context={
+                'ticket':ticket,
+                'vm':vm
+            }
+        response = render(request,'backup.html',context)
+        return response
+    else:
+        return redirect('login')
