@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_c)nbf9$v3a8^s#k8bv8r#31f#&qx!fj#r$+4s(03*+-7jq7(z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://web-production-f1d3.up.railway.app/','client.prom.cd','server.prom.cd','127.0.0.1']
 
 
 # Application definition
@@ -48,8 +48,6 @@ INSTALLED_APPS = [
 #SESSION_COOKIE_SAMESITE = 'None' 
 #SESSION_COOKIE_SECURE = True 
 #SESSION_COOKIE_HTTPONLY = True
-if not DEBUG:
-    CSRF_TRUSTED_ORIGINS = ['https://web-production-f1d3.up.railway.app/']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
