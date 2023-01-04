@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 #SESSION_COOKIE_SAMESITE = 'None' 
 #SESSION_COOKIE_SECURE = True 
 #SESSION_COOKIE_HTTPONLY = True
-CSRF_TRUSTED_ORIGINS = ['web-production-f1d3.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-f1d3.up.railway.app']
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
