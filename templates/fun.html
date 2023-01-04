@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><a href="http://www.google.com/" target="_blank">console</a></h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/2FeymQoKvrk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<script>
+     $.ajax({
+     url: "http://www.google.com/",
+     xhrFields: {
+     withCredentials: true
+      },
+      beforeSend: function(xhr) {
+       xhr.setRequestHeader("Cookie", 'cookieName=cookieValue');
+  }
+    });
+</script>
+<style>
+    iframe{      
+          display: block;  /* iframes are inline by default */   
+          height: 100vh;  /* Set height to 100% of the viewport height */   
+          width: 80vw;  /* Set width to 100% of the viewport width */     
+          border: none; /* Remove default border */
+          background: lightyellow; /* Just for styling */
+          margin: auto;
+      }
+  </style>
+</html>
