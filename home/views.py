@@ -89,8 +89,6 @@ def console(request,name):
     if 'username' in request.session:
         ticket = request.session['ticket']
         vms = request.session['vms']
-        print(vms)
-        print(name)
         for vm in vms:
             print(vm['name'])
             if vm['name'] == name:
@@ -128,7 +126,30 @@ def summary(request,name):
         return redirect('login')
 
 def snapshots(request,name):
-    pass
+    if 'username' in request.session:
+        ticket = request.session['ticket']
+        csrf = request.session['csrf']
+        node = request.session['node']
+        vms = request.session['vms']
+        for vm in vms:
+            if vm['name'] == name:
+                vm = vm
+        vmid = vm['vmid']
+        url = f"https://10.0.201.30:8006/api2/json/nodes/{node}/qemu/{vmid}/snapshot"
+        headers = {"CSRFPreventionToken": csrf, "Cookie": "PVEAuthCookie="+ticket}
+        response = requests.get(url,headers=headers, verify=False)
+        print(response.status_code)
+        response_json = response.json()
+
+        snapshots = response_json['data']
+        request.session['snapshots'] = snapshots
+        context={
+                'vm':vm
+            }
+        response = render(request,'snapshots.html',context)
+        return response
+    else:
+        return redirect('login')
 
 def backup(request,name):
     if 'username' in request.session:
