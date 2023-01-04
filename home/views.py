@@ -75,7 +75,6 @@ def cloudservers(request):
         response_json = response.json()
 
         vms = response_json['data']
-        print(vms)
         request.session['vms'] = vms
         context={
             'ticket':ticket
@@ -106,7 +105,7 @@ def console(request,name):
     response = render(request,'console.html',context)
     
     ticket = urllib.parse.quote(ticket, safe='')
-    response.set_cookie('PVEAuthCookie',ticket,domain='.prom.cd')
+    response.set_cookie('PVEAuthCookie',ticket,domain='.prom.cd',samesite=None,secure=True)
     return response
 
 def summary(request,name):
