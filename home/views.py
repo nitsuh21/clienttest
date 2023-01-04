@@ -104,7 +104,7 @@ def console(request,name):
         response = render(request,'console.html',context)
         print(request.session['csrf'])
         ticket = urllib.parse.quote(ticket, safe='')
-        response.set_cookie('PVEAuthCookie',ticket,domain='.prom.cd')
+        response.set_cookie('PVEAuthCookie',ticket,domain='.prom.cd',samesite=None,secure=True)
         return response
     else:
         return redirect('login')
