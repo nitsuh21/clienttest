@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_c)nbf9$v3a8^s#k8bv8r#31f#&qx!fj#r$+4s(03*+-7jq7(z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web-production-ec38.up.railway.app','client.prom.cd','server.prom.cd','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'proxmox.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'proxmox',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'jangmi',
-        'HOST': 'localhost',
-        'PORT': '',
+        'PASSWORD': 'iGq85qPXncRpMSxYMPa1',
+        'HOST': 'containers-us-west-37.railway.app',
+        'PORT': '6107',
     }
 }
 
